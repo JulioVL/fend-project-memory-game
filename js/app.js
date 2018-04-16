@@ -1,7 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
+ const cardList = document.querySelector('.deck').getElementsByTagName('i');
+ var arrCardList = [].slice.call(cardList);
 
 /*
  * Display the cards on the page
@@ -9,7 +10,7 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+console.log(arrCardList[0].className);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -23,6 +24,12 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+shuffle(arrCardList);
+
+for(var i = 0; i < cardList.length; i++){
+    cardList[i].className = arrCardList[i].className;
 }
 
 
