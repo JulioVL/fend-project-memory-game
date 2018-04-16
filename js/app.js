@@ -19,6 +19,8 @@
     'fa fa-paper-plane-o',
     'fa fa-paper-plane-o'];
 
+let clickedCardsArray = [];
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -43,10 +45,11 @@ function shuffle(array) {
 
 function printShuffle(){
 	shuffle(arregloPrueba);
-	for(var i = 0; i < cardList.length; i++){
+	for(let i = 0; i < cardList.length; i++){
 		//console.log(arrCardList[i].className);
 	    cardList[i].className = arregloPrueba[i];
         cardList[i].parentElement.className = 'card';
+        clickedCardsArray = [];
 	}
 }
 	
@@ -69,8 +72,6 @@ restart.addEventListener('click', printShuffle);
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-let clickedCardsArray = [];
 
 function matchCards(cardOne, cardTwo){
     for(var i = 0; i < cardList.length; i++){
