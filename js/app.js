@@ -46,6 +46,7 @@ function printShuffle(){
 	for(var i = 0; i < cardList.length; i++){
 		//console.log(arrCardList[i].className);
 	    cardList[i].className = arregloPrueba[i];
+        cardList[i].parentElement.className = 'card';
 	}
 }
 	
