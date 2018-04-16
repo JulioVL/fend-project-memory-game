@@ -69,8 +69,42 @@ restart.addEventListener('click', printShuffle);
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+let clickedCardsArray = [];
+
+function matchCards(cardOne, cardTwo){
+    for(var i = 0; i < cardList.length; i++){
+        console.log(cardOne + ' ' + cardTwo);
+        if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
+            cardList[i].parentElement.className = 'card open show';
+        }
+    }
+    clickedCardsArray = [];
+}
+
+function unmatchCards(cardOne, cardTwo){
+    for(var i = 0; i < cardList.length; i++){
+        console.log(cardOne + ' ' + cardTwo);
+        if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
+            cardList[i].parentElement.className = 'card';
+        }
+    }
+    clickedCardsArray = [];
+}
+
 document.querySelector('.deck').addEventListener('click', function(evt) {
-  if(evt.target.className.match(/card.*/)){
+  if (evt.target.className.match(/card.*/)) {
     evt.target.className = 'card match';
+  
+    clickedCardsArray.push(evt.target.querySelector('i').className);
+    console.log(clickedCardsArray);
+
+    if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
+      console.log('Me ejecutaron!' + clickedCardsArray[0] + clickedCardsArray[1]);
+      matchCards(clickedCardsArray[0], clickedCardsArray[1]);
+    } else if (clickedCardsArray.length > 1) {
+      console.log('didnt match');
+      unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
+    }
   }
 })
+
