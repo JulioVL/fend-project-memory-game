@@ -22,6 +22,8 @@ const restart = document.querySelector('.restart');
 let clickedCardsArray = [];
 let cardCounter = 0;
 let screenCounter = document.querySelector('.moves');
+let timeSpan = document.querySelector('.timer');
+let timer = 0;
 
 /*
  * Display the cards on the page
@@ -53,6 +55,8 @@ function restartGame(){
         clickedCardsArray = [];
         screenCounter.textContent = 0;
         cardCounter = 0;
+        timeSpan.textContent = 0;
+        timer = 0;
 	}
 }
 	
@@ -107,6 +111,7 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
 
     setQuantity(cardCounter);
   
+    //Check if cards matched or not
     clickedCardsArray.push(evt.target.querySelector('i').className);
 
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
@@ -116,4 +121,12 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     }
   }
 })
+
+//Set timer
+setInterval(function(){ 
+    timer += 1; 
+    timeSpan.textContent = timer;
+}, 1000);
+
+
 
