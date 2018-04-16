@@ -18,8 +18,10 @@
     'fa fa-leaf',
     'fa fa-paper-plane-o',
     'fa fa-paper-plane-o'];
-
+const restart = document.querySelector('.restart');
 let clickedCardsArray = [];
+let cardCounter = 0;
+let screenCounter = document.querySelector('.moves');
 
 /*
  * Display the cards on the page
@@ -43,23 +45,22 @@ function shuffle(array) {
     return array;
 }
 
-function printShuffle(){
+function restartGame(){
 	shuffle(arregloPrueba);
 	for(let i = 0; i < cardList.length; i++){
-		//console.log(arrCardList[i].className);
 	    cardList[i].className = arregloPrueba[i];
         cardList[i].parentElement.className = 'card';
         clickedCardsArray = [];
+        screenCounter.textContent = 0;
+        cardCounter = 0;
 	}
 }
 	
 //Execute print shuffle every time the web page is reloaded
-printShuffle();
+restartGame();
 
-//Execute print shuffle every time reload button is clicked
-const restart = document.querySelector('.restart');
-
-restart.addEventListener('click', printShuffle);
+//Execute restartGame every time reload button is clicked
+restart.addEventListener('click', restartGame);
 
 
 /*
@@ -75,7 +76,6 @@ restart.addEventListener('click', printShuffle);
 
 function matchCards(cardOne, cardTwo){
     for(var i = 0; i < cardList.length; i++){
-        console.log(cardOne + ' ' + cardTwo);
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
             cardList[i].parentElement.className = 'card open show';
         }
@@ -85,7 +85,6 @@ function matchCards(cardOne, cardTwo){
 
 function unmatchCards(cardOne, cardTwo){
     for(var i = 0; i < cardList.length; i++){
-        console.log(cardOne + ' ' + cardTwo);
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
             cardList[i].parentElement.className = 'card';
         }
@@ -93,18 +92,26 @@ function unmatchCards(cardOne, cardTwo){
     clickedCardsArray = [];
 }
 
+function setQuantity(counter){
+    screenCounter.textContent = counter;
+}
+
 document.querySelector('.deck').addEventListener('click', function(evt) {
+  //If prevents the clicks outside the cards to be considered
   if (evt.target.className.match(/card.*/)) {
+    //set the class name to card match to flip it
     evt.target.className = 'card match';
+
+    //Based on the quantity of user's moves, it prints the stars and moves quantity on screen
+    cardCounter += 1;
+
+    setQuantity(cardCounter);
   
     clickedCardsArray.push(evt.target.querySelector('i').className);
-    console.log(clickedCardsArray);
 
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
-      console.log('Me ejecutaron!' + clickedCardsArray[0] + clickedCardsArray[1]);
       matchCards(clickedCardsArray[0], clickedCardsArray[1]);
     } else if (clickedCardsArray.length > 1) {
-      console.log('didnt match');
       unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
     }
   }
