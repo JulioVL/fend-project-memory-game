@@ -78,6 +78,7 @@ restart.addEventListener('click', restartGame);
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+//change the classname for matches
 function matchCards(cardOne, cardTwo){
     for(var i = 0; i < cardList.length; i++){
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
@@ -86,7 +87,7 @@ function matchCards(cardOne, cardTwo){
     }
     clickedCardsArray = [];
 }
-
+//change the classname for unmatches
 function unmatchCards(cardOne, cardTwo){
     for(var i = 0; i < cardList.length; i++){
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
@@ -95,11 +96,13 @@ function unmatchCards(cardOne, cardTwo){
     }
     clickedCardsArray = [];
 }
-
+//Print the quantity of moves made by user
 function setQuantity(counter){
+    counter = Math.floor(counter/2);
     screenCounter.textContent = counter;
 }
 
+//listens at the deck element for clicks
 document.querySelector('.deck').addEventListener('click', function(evt) {
   //If prevents the clicks outside the cards to be considered
   if (evt.target.className.match(/card.*/)) {
