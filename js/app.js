@@ -164,7 +164,10 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
       matchCounter += 1;
       console.log(matchCounter);
     } else if (clickedCardsArray.length > 1) {
-      unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
+      //unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
+      setTimeout(function(){
+        unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
+      }, 300);
     }
   }
   if(matchCounter === 8){
