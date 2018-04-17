@@ -117,6 +117,7 @@ h1 {
 /*
  * Styles for the Completion Box
  */
+ 
 #completeMessage{
     display: none;
     position: fixed;

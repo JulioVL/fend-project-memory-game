@@ -69,7 +69,7 @@ function restartGame(){
     timer = 0;
     //add stars
     stars.innerHTML = '';
-    
+
     for (let i = 0; i < 3; i++) {
         const newLI = document.createElement('li');
         const newI = document.createElement('i');
@@ -79,7 +79,7 @@ function restartGame(){
     }
 
     matchCounter = 0;
-    completeMessage.style.display = "none";
+    completeMessage.style.display = 'none';
 }
 	
 //Execute print shuffle every time the web page is reloaded
@@ -148,7 +148,7 @@ function removeStars(counter){
 /**
 * @description Increase an element every 1 second and prints it to indicate the elapsed time in seconds
 */
-setInterval(function(){ 
+setInterval(function(){
     timer += 1; 
     timeSpan.textContent = timer;
 }, 1000);
@@ -157,7 +157,7 @@ setInterval(function(){
 * @description Shows the completition message box and prints on it the time employed in completing the game
 */
 function showComplete(){
-    completeMessage.style.display = "inline";
+    completeMessage.style.display = 'inline';
     timeClass.textContent = timer + ' seconds';
 }
 
@@ -193,6 +193,3 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     showComplete();
   }
 })
-
-
-
