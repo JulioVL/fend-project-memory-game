@@ -8,8 +8,8 @@
 
 ## Description
 
-The following project was made for the Udacity's Front End Web Developer Nanodegree.
-It is based on a card game that allows the user to interact with a grid of cards with the goal of matching them all.
+The following project was made for the **Udacity's Front End Web Developer Nanodegree**.
+It is based on a card game that allows the user to interact with a grid of cards with the goal of _matching them all_.
 
 ## Instructions
 
