@@ -2,16 +2,22 @@
 
 ## Table of Contents
 
+* [Description](#description)
 * [Instructions](#instructions)
 * [Contributing](#contributing)
 
+## Description
+
+The following project was made for the Udacity's Front End Web Developer Nanodegree.
+It is based on a card game that allows the user to interact with a grid of cards with the goal of matching them all.
+
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+- To download the game you can visit the following website: [Memory Card Game](https://github.com/JulioVL/fend-project-memory-game).
+- The board will show show 8 pairs of cards (16 in total) that you have to flip in order to find their match.
+- Every time you select two equal cards, they will stay flipped over; but, every time you fail, both cards will flip down.
+- When you match them all, a congratulation message box will appear indicating the number of stars you got and the time you used.
+- If you like, you can start again the game every time you want with the reload button (that is also in the congratulation message).
 
 ## Contributing
 
