@@ -25,8 +25,10 @@ let screenCounter = document.querySelector('.moves');
 let timeSpan = document.querySelector('.timer');
 let timer = 0;
 const starElement = '<li>*</li>';
-//const starElement = "<li><i class='fa fa-star'></i></li>";
 const stars = document.querySelector('.stars');
+let matchCounter = 0;
+const completeMessage = document.querySelector('#completeMessage');
+const timeClass = document.querySelector('.time');
 
 /*
  * Display the cards on the page
@@ -71,6 +73,9 @@ function restartGame(){
         stars.lastChild.appendChild(newI);
         stars.lastChild.lastChild.classList.add('fa', 'fa-star');
     }
+
+    matchCounter = 0;
+    completeMessage.style.display = "none";
 }
 	
 //Execute print shuffle every time the web page is reloaded
@@ -122,6 +127,18 @@ function removeStars(counter){
     }
 }
 
+//Set timer
+setInterval(function(){ 
+    timer += 1; 
+    timeSpan.textContent = timer;
+}, 1000);
+
+//Style completion message box
+function showComplete(){
+    completeMessage.style.display = "inline";
+    timeClass.textContent = timer + ' seconds';
+}
+
 
 //listens at the deck element for clicks
 document.querySelector('.deck').addEventListener('click', function(evt) {
@@ -144,17 +161,16 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     //Execute function based on the matching of cards
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
       matchCards(clickedCardsArray[0], clickedCardsArray[1]);
+      matchCounter += 1;
+      console.log(matchCounter);
     } else if (clickedCardsArray.length > 1) {
       unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
     }
   }
+  if(matchCounter === 8){
+    showComplete();
+  }
 })
-
-//Set timer
-setInterval(function(){ 
-    timer += 1; 
-    timeSpan.textContent = timer;
-}, 1000);
 
 
 

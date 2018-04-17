@@ -148,8 +148,9 @@ h1 {
 }
 
 .results{
-    width: 50%;
+    width: 30%;
     text-align: left;
+    margin-left: 70px;
 }
 
 .restart-game{
