@@ -29,6 +29,7 @@ const stars = document.querySelector('.stars');
 let matchCounter = 0;
 const completeMessage = document.querySelector('#completeMessage');
 const timeClass = document.querySelector('.time');
+let refreshIntervalId = 'x';
 
 /*
  * Display the cards on the page
@@ -50,6 +51,14 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+/**
+* @description Increase an element by 1 and prints this number
+*/
+function elapsedTime(){
+    timer += 1;
+    timeSpan.textContent = timer;
 }
 
 /**
@@ -77,9 +86,13 @@ function restartGame(){
         stars.lastChild.appendChild(newI);
         stars.lastChild.lastChild.classList.add('fa', 'fa-star');
     }
-
     matchCounter = 0;
     completeMessage.style.display = 'none';
+    //resets elapsed time
+    clearInterval(refreshIntervalId);
+    refreshIntervalId = setInterval(function(){
+                                        elapsedTime();
+                                    },1000)
 }
 	
 //Execute print shuffle every time the web page is reloaded
@@ -146,14 +159,6 @@ function removeStars(counter){
 }
 
 /**
-* @description Increase an element every 1 second and prints it to indicate the elapsed time in seconds
-*/
-setInterval(function(){
-    timer += 1; 
-    timeSpan.textContent = timer;
-}, 1000);
-
-/**
 * @description Shows the completition message box and prints on it the time employed in completing the game
 */
 function showComplete(){
@@ -191,5 +196,7 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
   //Executes the function to show complete message when all cards have been matched
   if(matchCounter === 8){
     showComplete();
+    //stops timer
+    clearInterval(refreshIntervalId);
   }
 })
