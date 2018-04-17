@@ -143,7 +143,7 @@ function showComplete(){
 //listens at the deck element for clicks
 document.querySelector('.deck').addEventListener('click', function(evt) {
   //If prevents the clicks outside the cards to be considered
-  if (evt.target.className.match(/card.*/)) {
+  if (evt.target.className.match(/card.*/) && evt.target.className !== 'card open show') {
     //set the class name to card match to flip it
     evt.target.className = 'card match';
 
