@@ -52,6 +52,10 @@ function shuffle(array) {
     return array;
 }
 
+/**
+* @description Restarts every variable and element changed during previous game or after reloading page
+* @returns variables and elements with their initial values
+*/
 function restartGame(){
 	shuffle(arregloPrueba);
 	for(let i = 0; i < cardList.length; i++){
@@ -96,79 +100,95 @@ restart.addEventListener('click', restartGame);
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//change the classname for matches
+/**
+* @description Modifies the class name of the matched card elements to open show
+* @param {string} cardOne The first card clicked
+* @param {string} cardTwo The second card clicked
+*/
 function matchCards(cardOne, cardTwo){
-    for(var i = 0; i < cardList.length; i++){
+    for(let i = 0; i < cardList.length; i++){
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
             cardList[i].parentElement.className = 'card open show';
         }
     }
     clickedCardsArray = [];
 }
-//change the classname for unmatches
+/**
+* @description Modifies the class name of the matched card elements to card
+* @param {string} cardOne The first card clicked
+* @param {string} cardTwo The second card clicked
+*/
 function unmatchCards(cardOne, cardTwo){
-    for(var i = 0; i < cardList.length; i++){
+    for(let i = 0; i < cardList.length; i++){
         if ( cardList[i].className === cardOne || cardList[i].className === cardTwo) {
             cardList[i].parentElement.className = 'card';
         }
     }
     clickedCardsArray = [];
 }
-//Print the quantity of moves made by user
+/**
+* @description Prints the number of moves based on the counter
+* @param {number} counter Counts the number of clicks made on the cards
+*/
 function setQuantity(counter){
     counter = Math.floor(counter/2);
     screenCounter.textContent = counter;
 }
 
-//Remove stars
+/**
+* @description Removes stars from the stars element based on the counter
+* @param {number} counter
+*/
 function removeStars(counter){
     if (counter === 20 || counter === 40 || counter === 60) {
         stars.firstElementChild.remove();
     }
 }
 
-//Set timer
+/**
+* @description Increase an element every 1 second and prints it to indicate the elapsed time in seconds
+*/
 setInterval(function(){ 
     timer += 1; 
     timeSpan.textContent = timer;
 }, 1000);
 
-//Style completion message box
+/**
+* @description Shows the completition message box and prints on it the time employed in completing the game
+*/
 function showComplete(){
     completeMessage.style.display = "inline";
     timeClass.textContent = timer + ' seconds';
 }
 
-
-//listens at the deck element for clicks
+/**
+* @description Listener activated when any of the cards are clicked (except the ones already matched)
+*/
 document.querySelector('.deck').addEventListener('click', function(evt) {
   //If prevents the clicks outside the cards to be considered
   if (evt.target.className.match(/card.*/) && evt.target.className !== 'card open show') {
     //set the class name to card match to flip it
     evt.target.className = 'card match';
-
     //Based on the quantity of user's moves, it prints the moves quantity on screen
     cardCounter += 1;
     setQuantity(cardCounter);
-
     //Based on the quantity of user's moves, it adds or removes stars
     //Remove stars for every 10 moves (20 counts)
     removeStars(cardCounter);
-
     //Check if cards matched or not
     //adds card name to array
     clickedCardsArray.push(evt.target.querySelector('i').className);
-    //Execute function based on the matching of cards
+    //Execute function based on the matching or unmatching of cards
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
       matchCards(clickedCardsArray[0], clickedCardsArray[1]);
       matchCounter += 1;
     } else if (clickedCardsArray.length > 1) {
-      //unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
       setTimeout(function(){
         unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
       }, 300);
     }
   }
+  //Executes the function to show complete message when all cards have been matched
   if(matchCounter === 8){
     showComplete();
   }
