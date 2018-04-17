@@ -135,11 +135,13 @@ h1 {
     flex-wrap: wrap;
     margin: auto;
     padding: 20px;
-    width: 65%;
-    height: 60%;
+    width: 50%;
+    height: 20%;
     border-radius: 5%;
     background-color: #ffcc00;
     color: white;
+    min-width: 480px;
+    min-height: 300px;
 }
 
 .congrats{
@@ -205,3 +207,25 @@ h1 {
 .restartButton:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 750px) {
+    .endContainer{
+        width: 50%;
+        height: 30%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .endContainer{
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+    .endContainer{
+        width: 30%;
+    }
+}

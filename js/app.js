@@ -162,7 +162,6 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
       matchCards(clickedCardsArray[0], clickedCardsArray[1]);
       matchCounter += 1;
-      console.log(matchCounter);
     } else if (clickedCardsArray.length > 1) {
       //unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
       setTimeout(function(){
