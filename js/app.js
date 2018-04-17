@@ -24,6 +24,9 @@ let cardCounter = 0;
 let screenCounter = document.querySelector('.moves');
 let timeSpan = document.querySelector('.timer');
 let timer = 0;
+const starElement = '<li>*</li>';
+//const starElement = "<li><i class='fa fa-star'></i></li>";
+const stars = document.querySelector('.stars');
 
 /*
  * Display the cards on the page
@@ -52,12 +55,22 @@ function restartGame(){
 	for(let i = 0; i < cardList.length; i++){
 	    cardList[i].className = arregloPrueba[i];
         cardList[i].parentElement.className = 'card';
-        clickedCardsArray = [];
-        screenCounter.textContent = 0;
-        cardCounter = 0;
-        timeSpan.textContent = 0;
-        timer = 0;
 	}
+    clickedCardsArray = [];
+    screenCounter.textContent = 0;
+    cardCounter = 0;
+    timeSpan.textContent = 0;
+    timer = 0;
+    //add stars
+    stars.innerHTML = '';
+    
+    for (let i = 0; i < 3; i++) {
+        const newLI = document.createElement('li');
+        const newI = document.createElement('i');
+        stars.appendChild(newLI);
+        stars.lastChild.appendChild(newI);
+        stars.lastChild.lastChild.classList.add('fa', 'fa-star');
+    }
 }
 	
 //Execute print shuffle every time the web page is reloaded
@@ -102,6 +115,14 @@ function setQuantity(counter){
     screenCounter.textContent = counter;
 }
 
+//Remove stars
+function removeStars(counter){
+    if (counter === 20 || counter === 40 || counter === 60) {
+        stars.firstElementChild.remove();
+    }
+}
+
+
 //listens at the deck element for clicks
 document.querySelector('.deck').addEventListener('click', function(evt) {
   //If prevents the clicks outside the cards to be considered
@@ -109,14 +130,18 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     //set the class name to card match to flip it
     evt.target.className = 'card match';
 
-    //Based on the quantity of user's moves, it prints the stars and moves quantity on screen
+    //Based on the quantity of user's moves, it prints the moves quantity on screen
     cardCounter += 1;
-
     setQuantity(cardCounter);
-  
-    //Check if cards matched or not
-    clickedCardsArray.push(evt.target.querySelector('i').className);
 
+    //Based on the quantity of user's moves, it adds or removes stars
+    //Remove stars for every 10 moves (20 counts)
+    removeStars(cardCounter);
+
+    //Check if cards matched or not
+    //adds card name to array
+    clickedCardsArray.push(evt.target.querySelector('i').className);
+    //Execute function based on the matching of cards
     if (clickedCardsArray.length>1 && clickedCardsArray[0]===clickedCardsArray[1]) {
       matchCards(clickedCardsArray[0], clickedCardsArray[1]);
     } else if (clickedCardsArray.length > 1) {
