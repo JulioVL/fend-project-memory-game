@@ -117,7 +117,7 @@ h1 {
 /*
  * Styles for the Completion Box
  */
- 
+
 #completeMessage{
     display: none;
     position: fixed;
@@ -154,6 +154,24 @@ h1 {
     width: 30%;
     text-align: left;
     margin-left: 70px;
+}
+
+.scorePanel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.scorePanel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.scorePanel .stars li {
+    list-style: none;
+    display: inline-block;
 }
 
 .restart-game{

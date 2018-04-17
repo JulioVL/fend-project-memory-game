@@ -26,6 +26,8 @@ let timeSpan = document.querySelector('.timer');
 let timer = 0;
 const starElement = '<li>*</li>';
 const stars = document.querySelector('.stars');
+let clonedStars = stars.cloneNode(true);
+const boxStars = document.querySelector('.scorePanel');
 let matchCounter = 0;
 const completeMessage = document.querySelector('#completeMessage');
 const timeClass = document.querySelector('.time');
@@ -93,6 +95,10 @@ function restartGame(){
     refreshIntervalId = setInterval(function(){
                                         elapsedTime();
                                     },1000)
+    //reset stars for complete box
+    while (boxStars.firstChild) {
+        boxStars.removeChild(boxStars.firstChild);
+    }
 }
 	
 //Execute print shuffle every time the web page is reloaded
@@ -159,10 +165,12 @@ function removeStars(counter){
 }
 
 /**
-* @description Shows the completition message box and prints on it the time employed in completing the game
+* @description Shows the completition message box and prints on it the stars and time employed in completing the game
 */
 function showComplete(){
     completeMessage.style.display = 'inline';
+    clonedStars = stars.cloneNode(true);
+    boxStars.appendChild(clonedStars);
     timeClass.textContent = timer + ' seconds';
 }
 
