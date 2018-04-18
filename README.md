@@ -17,9 +17,9 @@ It is based on a card game that allows the user to interact with a grid of cards
 ### Install instructions
 - To download the game you can visit the following website: [Memory Card Game](https://github.com/JulioVL/fend-project-memory-game).
 - Clone it and open index.html
-...
+```
 $ git clone https://github.com/JulioVL/fend-project-memory-game.git
-...
+```
 
 ### Game instructions
 - The board will show show 8 pairs of cards (16 in total) that you have to flip in order to find their match.
