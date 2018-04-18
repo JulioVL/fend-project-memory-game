@@ -179,7 +179,8 @@ function showComplete(){
 */
 document.querySelector('.deck').addEventListener('click', function(evt) {
   //If prevents the clicks outside the cards to be considered
-  if (evt.target.className.match(/card.*/) && evt.target.className !== 'card open show' && evt.target.className !== 'card match') {
+  if (evt.target.className.match(/card.*/) && evt.target.className !== 'card open show'
+        && evt.target.className !== 'card match' && clickedCardsArray.length < 2) {
     //set the class name to card match to flip it
     evt.target.className = 'card match';
     //Based on the quantity of user's moves, it prints the moves quantity on screen
@@ -198,7 +199,7 @@ document.querySelector('.deck').addEventListener('click', function(evt) {
     } else if (clickedCardsArray.length > 1) {
       setTimeout(function(){
         unmatchCards(clickedCardsArray[0], clickedCardsArray[1]);
-      }, 300);
+      }, 250);
     }
   }
   //Executes the function to show complete message when all cards have been matched
